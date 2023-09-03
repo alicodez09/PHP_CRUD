@@ -16,7 +16,7 @@ include "connect.php"
 <body>
     <div class="container">
         <button class="btn btn-success mt-5">
-            <a href="user.php" class="text-white text-decoration-none">Add User</a>
+            <a href="user.php" class="text-white text-decoration-none">Create User</a>
         </button>
         <div class="table-responsive-sm mt-4 border-3">
             <table class="table table-striped  table-bordered table-hover">
