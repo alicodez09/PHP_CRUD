@@ -1,3 +1,6 @@
+<?php
+include "connect.php"
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,9 +19,9 @@
             <a href="user.php" class="text-white text-decoration-none">Add User</a>
         </button>
         <div class="table-responsive-sm mt-4 border-3">
-            <table class="table  table-striped  table-bordered table-hover">
+            <table class="table table-striped  table-bordered table-hover">
                 <thead class="table-dark">
-                    <tr>
+                    <tr class="text-center">
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
@@ -28,31 +31,34 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php
+                    $sql = "Select * from `crud`";
+                    $result = mysqli_query($con, $sql);
+                    if ($result) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $id = $row['id'];
+                            $username = $row['username'];
+                            $email = $row['email'];
+                            $phone = $row['phone'];
+                            $address = $row['address'];
+                            echo '
+                        <tr class="text-center">
+                            <th scope="row">' . $id . '</th>
+                            <td>' . $username . '</td>
+                            <td>' . $email . '</td>
+                            <td>' . $phone . '</td>
+                            <td>' . $address . '</td>
+                            
+                            <td>
+                            <button class="btn btn-sm btn-info"><a href="update.php?update_data=' . $id . '" class="text-white text-decoration-none">Update</a></button>
+                            <button class="btn btn-sm btn-danger"><a href="delete.php?id=' . $id . '" class="text-white text-decoration-none">Delete</a></button>
+                            </td>
+                        </tr>
+                             ';
+                        }
+                    }
+                    ?>
 
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>@twitter</td>
-
-                    </tr>
 
                 </tbody>
             </table>
