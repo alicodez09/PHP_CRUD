@@ -1,10 +1,25 @@
+<?php
+include 'connect.php';
+if(isset($_POST['submit'])){
+    $username=$_POST['username'];
+    $email=$_POST['email'];
+    $phone=$_POST['phone'];
+    $address=$_POST['address'];
+    $sql="insert into `crud` (username,email,phone,address) values('$username','$email','$phone','$address')";
+    $result=mysqli_query($con,$sql);
+    if(!$result){
+        die(mysqli_error($con));
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CRUD Operation in PHP</title>
+    <title>Create Users</title>
+    <!-- Bootstarp CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
 </head>
@@ -32,13 +47,14 @@
                             placeholder="Enter Your Address" name="address" />
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-primary w-50">Submit</button>
+                        <button type="submit" class="btn btn-success w-50" name="submit">Submit</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </body>
+<!-- Bootstarp JS CDN -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
 </script>
